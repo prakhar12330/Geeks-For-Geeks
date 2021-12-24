@@ -1,0 +1,24 @@
+class Solution{   
+public:
+    int maximumSumSubarray(int K, vector<int> &Arr , int N)
+    {
+        // code here 
+        if(N<K)
+        {
+            return 0;
+        }
+        // creating first window of given size K and calculating its sum also
+        int rsum=0;
+        for(int i=0;i<K;i++)
+        {
+            rsum += Arr[i];
+        }
+        int curr_sum=rsum;
+        for(int i=K;i<N;i++)
+        {
+            curr_sum += Arr[i]-Arr[i-K];
+            rsum=max(rsum,curr_sum);
+        }
+        return rsum;
+    }
+};
